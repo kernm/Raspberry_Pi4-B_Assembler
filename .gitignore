@@ -1,0 +1,5 @@
+.gitignore
+blink_sos/System.map
+blink_sos/boot.o
+blink_sos/kernel.elf
+blink_sos/kernel8.img
