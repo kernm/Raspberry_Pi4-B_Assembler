@@ -1,6 +1,9 @@
 # Raspberry_Pi4-B_Assembler
 How to code Bare Metal with Assembly language
 
+## Where the magic is happening
+Everything you need to know or change is is the "./blink_sos/boot.S" file.
+
 ## GPIO Pin
 In this example I use GPIO-Pin: 24
 
