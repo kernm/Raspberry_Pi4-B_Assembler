@@ -1,4 +1,4 @@
-# Raspberry_Pi4-B_Assembler
+# Raspberry Pi4 Model B - Assembly language
 Bare Metal coding with Assembly language on a Raspberry Pi 4 Model B
 
 ## Where the magic is happening
