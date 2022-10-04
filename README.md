@@ -42,4 +42,4 @@ aarch64-linux-gnu-objcopy -O binary kernel.elf kernel8.img
 In this example I use GPIO-Pin: 24 (PIN 18)
 
 ## GPIO Pinout Raspberry Pi 4 Model B
-![image](https://user-images.githubusercontent.com/16921197/193692633-cc902dd9-8fec-4a7b-8da9-2976f49ef299.png)
+![alt text](https://user-images.githubusercontent.com/16921197/193692633-cc902dd9-8fec-4a7b-8da9-2976f49ef299.png "Image of the GPIO pinout")
