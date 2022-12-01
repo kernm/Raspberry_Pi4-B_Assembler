@@ -70,9 +70,18 @@ wait_short:
     msr CNTP_CTL_EL0, x5    /* Enable the counter and interrupt generation*/
 
 .readTimer:                  /* See if the timer condition is met */
+# turn off the LED
+    ldr w1, =GPIOVAL ;//# value to write to set register
+    str w1, [x0, #GPFCLR0] ;//# store in set register
+
     mrs x5, CNTP_CTL_EL0    /* Read the Status of the Timer */
     and x5, x5, 0b100         /* See if x3 equals 0b1 (timer condition is met) */
     cbz x5, .readTimer      /* If x3 is 0 (Timer condition is not met) go to .readTimer */
+
+# turn on the LED
+    ldr w1, = GPIOVAL ;//# value to write to set register
+    str w1, [x0, #GPFSET0] ;//# store in set register
+
     ret                     /* Timer condition is met, go back*/
 
 
