@@ -22,9 +22,9 @@ _start:
 2:  /* We're on the main core! */
 	mov	sp, #0x80000
 
-	mrs x3, CNTFRQ_EL0       /* Read frequency of system counter (read hz) */
-    mov x2, 1000             /* Set x2 to 1000 (to divide frequency in ms) */
-    sdiv x3, x3, x2          /* Divide the Frequency of the System Counter by 1000, to deal with it in ms */
+	; mrs x3, CNTFRQ_EL0       /* Read frequency of system counter (read hz) */
+    ; mov x2, 1000             /* Set x2 to 1000 (to divide frequency in ms) */
+    ; sdiv x3, x3, x2          /* Divide the Frequency of the System Counter by 1000, to deal with it in ms */
 
     ldr x0,=0xFE200000       /* Basis adresse in x0 speichern */
 
@@ -65,7 +65,7 @@ wait_short:
     sdiv x3, x3, x2          /* Divide the Frequency of the System Counter by 1000, to deal with it in ms */
 
     mul x5, x3, x4          /* multiply the x3 (System counter in HZ /1000) by set wait time in ms from x4*/
-    mrs x5, CNTP_CVAL_EL0  /* Write a comparator value to CNTP_CVAL_EL0, a 64-bit register. */
+    msr CNTP_CVAL_EL0, x5  /* Write a comparator value to CNTP_CVAL_EL0, a 64-bit register. */
 
     msr CNTP_CTL_EL0, x5    /* Enable the counter and interrupt generation*/
 
