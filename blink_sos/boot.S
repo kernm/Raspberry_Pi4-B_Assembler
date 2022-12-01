@@ -56,7 +56,7 @@ main:
     bl main
 
 wait_short:
-.L_initTimer                  /* Start of Time */
+.initTimer:                  /* Start of Time */
     .equ short_Time, 500    /* Defines the wait time in ms */
     mov x4, short_Time      /* Move short_time to x4 for 500ms wait */
 
@@ -69,7 +69,7 @@ wait_short:
 
     msr x5, CNTP_CTL_EL0    /* Enable the counter and interrupt generation*/
 
-.L_readTimer                  /* See if the timer condition is met */
+.readTimer:                  /* See if the timer condition is met */
     mrs x5, CNTP_CTL_EL0    /* Read the Status of the Timer */
     and x5, x5, 0b1         /* See if x3 equals 0b1 (timer condition is met) */
     cbz x5, .readTimer      /* If x3 is 0 (Timer condition is not met) go to .readTimer */
