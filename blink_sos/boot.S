@@ -71,7 +71,7 @@ wait_short:
 
 .readTimer:                  /* See if the timer condition is met */
     mrs x5, CNTP_CTL_EL0    /* Read the Status of the Timer */
-    and x5, x5, 0b100         /* See if x3 equals 0b1 (timer condition is met) */
+    and x5, x5, 0b1         /* See if x3 equals 0b1 (timer condition is met) */
     cbz x5, .readTimer      /* If x3 is 0 (Timer condition is not met) go to .readTimer */
     ret                     /* Timer condition is met, go back*/
 
