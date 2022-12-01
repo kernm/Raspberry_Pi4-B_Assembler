@@ -65,13 +65,13 @@ wait_short:
     sdiv x3, x3, x2          /* Divide the Frequency of the System Counter by 1000, to deal with it in ms */
 
     mul x5, x3, x4          /* multiply the x3 (System counter in HZ /1000) by set wait time in ms from x4*/
-    mrs CNTP_CVAL_EL0, x5   /* Write a comparator value to CNTP_CVAL_EL0, a 64-bit register. */
+    mrs x5, CNTP_CVAL_EL0  /* Write a comparator value to CNTP_CVAL_EL0, a 64-bit register. */
 
-    msr x5, CNTP_CTL_EL0    /* Enable the counter and interrupt generation*/
+    msr CNTP_CTL_EL0, x5    /* Enable the counter and interrupt generation*/
 
 .readTimer:                  /* See if the timer condition is met */
     mrs x5, CNTP_CTL_EL0    /* Read the Status of the Timer */
-    and x5, x5, 0b1         /* See if x3 equals 0b1 (timer condition is met) */
+    and x5, x5, 0b100         /* See if x3 equals 0b1 (timer condition is met) */
     cbz x5, .readTimer      /* If x3 is 0 (Timer condition is not met) go to .readTimer */
     ret                     /* Timer condition is met, go back*/
 
