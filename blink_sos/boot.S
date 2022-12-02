@@ -5,10 +5,10 @@
 
 .equ GPIO_24_OUTPUT, 0x1000
 
-.equ GPFSET0, 0x1c //# Power 1 (LED power)
+.equ GPFSET0, 0x1c //# Power 1 (LED power on)
 .equ GPFCLR0, 0x28 //# Power 0 (LED power off)
 
-.equ GPIOVAL, 0x1000000
+.equ GPIOVAL, 0x1000000 /* Was Passiert hier?????????????????????*/
 
 _start:
     mrs x1, mpidr_el1        /* move register system (MPIDR_EL1, Multiprocessor Affinity Register, EL1) to x1 */
@@ -65,13 +65,13 @@ wait_short:
     sdiv x3, x3, x2          /* Divide the Frequency of the System Counter by 1000, to deal with it in ms */
 
     mul x5, x3, x4          /* multiply the x3 (System counter in HZ /1000) by set wait time in ms from x4*/
-    msr CNTP_TVAL_EL0, x5  /* Write a comparator value to CNTP_CVAL_EL0, a 64-bit register. */
-
-    msr CNTP_CTL_EL0, x5    /* Enable the counter and interrupt generation*/
+    msr CNTP_CVAL_EL0, x5  /* Write a comparator value to CNTP_CVAL_EL0, a 64-bit register. */
+    mov x1 #1               /* Write 1 to x1, to enable counter */
+    msr CNTP_CTL_EL0, x1    /* Enable the counter and interrupt generation*/
 
 .readTimer:                  /* See if the timer condition is met */
     mrs x5, CNTP_CTL_EL0    /* Read the Status of the Timer */
-    and x5, x5, 0b1         /* See if x3 equals 0b1 (timer condition is met) */
+    and x5, x5, 0b1         /* See if x5 equals 0b1 (timer condition is met) */
     cbz x5, .readTimer      /* If x3 is 0 (Timer condition is not met) go to .readTimer */
     ret                     /* Timer condition is met, go back*/
 
@@ -116,12 +116,12 @@ loop_kurz:
 ret
 
 loop_lang:
-    #turn on the LED
+    # turn on the LED
     ldr w1, = GPIOVAL ;//# value to write to set register
     str w1, [x0, #GPFSET0] ;//# store in set register
 
     # wait for some time, delay
-    eor x10, x10, x10
+    eor x10, x10, x10 /* Exclusive OR */
 
     delay3:
         add x10, x10, #1
