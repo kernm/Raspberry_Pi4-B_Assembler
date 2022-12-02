@@ -56,7 +56,12 @@ main:
     bl main
 
 wait_short:
-.initTimer:                  /* Start of Time */
+.initTimer:                  /* Start of Time */¨
+
+    stp x29, x30, [sp, -32]!  /* storing a pair, sp = stack pointer */
+    mov x29, sp               /* store stack pointer */
+    str x0, [sp, 24]          /* push argument (timeout) on stack (what for?) */
+
     .equ short_Time, 500    /* Defines the wait time in ms */
     mov x4, short_Time      /* Move short_time to x4 for 500ms wait */
 
@@ -73,6 +78,9 @@ wait_short:
     mrs x5, CNTP_CTL_EL0    /* Read the Status of the Timer */
     and x5, x5, 0b1         /* See if x5 equals 0b1 (timer condition is met) */
     cbz x5, .readTimer      /* If x3 is 0 (Timer condition is not met) go to .readTimer */
+
+    ldp    x29, x30, [sp], 32    /* restore context... */
+
     ret                     /* Timer condition is met, go back*/
 
 
