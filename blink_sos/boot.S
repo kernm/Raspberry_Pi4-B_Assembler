@@ -56,7 +56,7 @@ main:
     bl main
 
 wait_short:
-.initTimer:                  /* Start of Time */¨
+.initTimer:                  /* Start of Time */
 
     stp x29, x30, [sp, -32]!  /* storing a pair, sp = stack pointer */
     mov x29, sp               /* store stack pointer */
@@ -79,7 +79,7 @@ wait_short:
     and x5, x5, 0b1         /* See if x5 equals 0b1 (timer condition is met) */
     cbz x5, .readTimer      /* If x3 is 0 (Timer condition is not met) go to .readTimer */
 
-    ldp    x29, x30, [sp], 32    /* restore context... */
+    ldp x29, x30, [sp], 32    /* restore context... */
 
     ret                     /* Timer condition is met, go back*/
 
