@@ -41,9 +41,7 @@ wait_short:
                                 The ! at the end updates the sp to the computed value*/
     mov x29, sp               /* store stack pointer.
                                 At this point the stack pointer and the frame pointer are referring to the same memory address.*/
-    str x0, [sp, 24]          /* push argument (timeout) on stack (what for?)
-                                Callee-saved registers (AKA non-volatile registers, or call-preserved) are used to hold long-lived values that should be preserved across calls.*/
-
+ 
     .equ short_Time, 250    /* Defines the wait time in ms */
     mov x4, short_Time      /* Move short_time to x4 for 500ms wait */
 
