@@ -26,9 +26,9 @@ _start:
     str w1,[x0, GPFSEL2]        /* FSEL2(SELECT) (funktion wählen) */
 
 main:
-    bl l
-    bl e
+    bl s
     bl o
+    bl s
     bl wait_long
     b main
 
