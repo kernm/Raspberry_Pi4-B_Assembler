@@ -4,13 +4,13 @@
 .equ GPFSEL1, 0x04 /* GPIO Function Select 1 */
 .equ GPFSEL2, 0x08 /* GPIO Function Select 2 */
 
-.equ GPIO_24_OUTPUT, 0x1000
+.equ GPIO_10_OUTPUT, 0x1
 .equ GPIO_20_OUTPUT, 0x1
 
 .equ GPFSET0, 0x1c //# Power 1 (LED power on)
 .equ GPFCLR0, 0x28 //# Power 0 (LED power off)
 
-.equ GPIOVAL_24, 0x1000000 /* Set bit 24 for GPIO24 */
+.equ GPIOVAL_10, 0x100000 /* Set bit 10 for GPIO10 */
 .equ GPIOVAL_20, 0x100000 /* Set bit 20 for GPIO20 */
 
 
@@ -29,11 +29,11 @@ _start:
 3: /* Set GPIOs as Output*/
     ldr x0, = GPIO_BASE		/* set GPIO Base */
 
-    mov w1, GPIO_24_OUTPUT	/* GPIO Output 24 */
+    mov w1, GPIO_10_OUTPUT	/* GPIO Output 10 */
     mov w2, GPIO_20_OUTPUT	/* GPIO Output 20 */
     
     str w1,[x0, GPFSEL1]        /* FSEL1(SELECT) (set the GPIO to output) */
- /*   str w2,[x0, GPFSEL2]        /* FSEL2(SELECT) (set the GPIO to output) */
+    str w2,[x0, GPFSEL2]        /* FSEL2(SELECT) (set the GPIO to output) */
 
 main:
     bl led_on
@@ -72,13 +72,13 @@ wait_short:
 
 led_on:
     ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
-    ldr w1, = GPIOVAL_24 ;//# value to write to set register
+    ldr w1, = GPIOVAL_10 ;//# value to write to set register
     str w1, [x0, #GPFSET0] ;//# store in set register
 ret
 
 led_off:
     ldr x0, = GPIO_BASE      /* Basis adresse in x0 speichern */
-    ldr w1, = GPIOVAL_24 ;//# value to write to set register
+    ldr w1, = GPIOVAL_10 ;//# value to write to set register
     str w1, [x0, #GPFCLR0] ;//# store in set register
 ret
 
