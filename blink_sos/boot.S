@@ -50,8 +50,8 @@ wait_short:
                                 At this point the stack pointer and the frame pointer are referring to the same memory address. */
   
   /* Braucht es vermutlich nicht, kann entfernt werden.... */
-    str x0, [sp, 24]          /* push argument (timeout) on stack (what for?) */
-   ;                            Callee-saved registers (AKA non-volatile registers, or call-preserved) are used to hold long-lived values that should be preserved across calls.*/
+    str x0, [sp, 24]          /* push argument (timeout) on stack (what for?)
+                               Callee-saved registers (AKA non-volatile registers, or call-preserved) are used to hold long-lived values that should be preserved across calls. */
   /* Ab hier brauchts den Code wieder ;) */
 
     .equ short_Time, 500    /* Defines the wait time in ms */
