@@ -29,6 +29,7 @@ main:
     bl s
     bl o
     bl s
+    bl wait_long
     b main
 
 wait_short:
