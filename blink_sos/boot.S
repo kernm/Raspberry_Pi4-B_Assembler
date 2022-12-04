@@ -37,10 +37,8 @@ _start:
 
 main:
     bl led_on
-    bl seg_A_on
-    bl wait_long
+    bl wait_short
     bl led_off
-    bl seg_A_off
     b main
 
 wait_short:
