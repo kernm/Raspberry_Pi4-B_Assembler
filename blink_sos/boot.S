@@ -44,12 +44,13 @@ _start:
     mov x27, 4 
 
 main:
+    bl led_on
     bl wait_short
+    bl led_off
     bl main
 
 wait_short:
 .initTimer:                  /* Start of Time */
-bl led_on
     stp x29, x30, [sp, -32]!  /* Store Pair of Registers, in this case the sp = stack pointer
                                 x29 = frame pointer, x30 = link register
                                 The memory location where the two values are stored is computed as sp -32
@@ -80,7 +81,6 @@ bl led_on
     cbz x5, .readTimer      /* If x3 is 0 (Timer condition is not met) go to .readTimer */
 
     ldp x29, x30, [sp], 32    /* load the old frame pointer and return address, and also move the stack pointer back up 32 bit */
-bl led_off
 ret                     /* Return to main */
 
 ; wait_long:      /* Wait 1s */
