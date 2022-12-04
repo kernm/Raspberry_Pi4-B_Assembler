@@ -29,8 +29,8 @@ _start:
     str w1,[x0, GPFSEL2]        /* FSEL2(SELECT) (set the GPIO to output) */
 
     ldr x0, = GPIO_BASE		/* set GPIO Base */
-    mov w1, GPIO_20_OUTPUT	/* GPIO Output 20 */
-    str w1,[x0, GPFSEL2]        /* FSEL2(SELECT) (set the GPIO to output) */
+    mov w2, GPIO_20_OUTPUT	/* GPIO Output 20 */
+    str w2,[x0, GPFSEL2]        /* FSEL2(SELECT) (set the GPIO to output) */
 
 main:
     bl seg_A_on
