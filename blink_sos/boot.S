@@ -47,20 +47,19 @@ main:
     bl loop_kurz
     bl loop_kurz
     bl loop_kurz
-    mov x26, 4
-    bl loop_lang
-    mov x27, 4
-    bl loop_kurz
-    mov x26, 4
-    bl wait_timer
     bl main
 
 wait_short:
 .initTimer:                  /* Start of Time */
 
-    stp x29, x30, [sp, -32]!  /* storing a pair, sp = stack pointer */
-    mov x29, sp               /* store stack pointer */
-    str x0, [sp, 24]          /* push argument (timeout) on stack (what for?) */
+    stp x29, x30, [sp, -32]!  /* Store Pair of Registers, in this case the sp = stack pointer
+                                x29 = frame pointer, x30 = link register
+                                The memory location where the two values are stored is computed as sp -32
+                                The ! at the end updates the sp to the computed value*/
+    mov x29, sp               /* store stack pointer.
+                                At this point the stack pointer and the frame pointer are referring to the same memory address.*/
+   ; str x0, [sp, 24]          /* push argument (timeout) on stack (what for?)
+                                Callee-saved registers (AKA non-volatile registers, or call-preserved) are used to hold long-lived values that should be preserved across calls.*/
 
     .equ short_Time, 500    /* Defines the wait time in ms */
     mov x4, short_Time      /* Move short_time to x4 for 500ms wait */
@@ -70,7 +69,7 @@ wait_short:
     sdiv x3, x3, x2          /* Divide the Frequency of the System Counter by 1000, to deal with it in ms */
 
     mul x5, x3, x4          /* multiply the x3 (System counter in HZ /1000) by set wait time in ms from x4*/
-    msr CNTP_TVAL_EL0, x5  /* Write a comparator value to CNTP_CVAL_EL0, a 64-bit register. */
+    msr CNTP_TVAL_EL0, x5  /* Write a comparator value to CNTP_TVAL_EL0, a 64-bit register. */
     mov x1, #1               /* Write 1 to x1, to enable counter */
     msr CNTP_CTL_EL0, x1    /* Enable the counter and interrupt generation*/
 
