@@ -6,12 +6,26 @@
 
 .equ GPIO_10_OUTPUT, 0x1
 .equ GPIO_20_OUTPUT, 0x1
+.equ GPIO_21_OUTPUT, 0x8
+.equ GPIO_22_OUTPUT, 0x10
+.equ GPIO_23_OUTPUT, 0x40
+.equ GPIO_24_OUTPUT, 0x200
+.equ GPIO_25_OUTPUT, 0x1000
+.equ GPIO_26_OUTPUT, 0x8000
+.equ GPIO_27_OUTPUT, 0x40000
 
 .equ GPFSET0, 0x1c //# Power 1 (LED power on)
 .equ GPFCLR0, 0x28 //# Power 0 (LED power off)
 
 .equ GPIOVAL_10, 0x400 /* Set bit 10 for GPIO10 */
 .equ GPIOVAL_20, 0x100000 /* Set bit 20 for GPIO20 */
+.equ GPIOVAL_21, 0x200000 /* Set bit 21 for GPIO21 */
+.equ GPIOVAL_22, 0x400000 /* Set bit 22 for GPIO22 */
+.equ GPIOVAL_23, 0x800000 /* Set bit 23 for GPIO23 */
+.equ GPIOVAL_24, 0x1000000 /* Set bit 24 for GPIO24 */
+.equ GPIOVAL_25, 0x2000000 /* Set bit 25 for GPIO25 */
+.equ GPIOVAL_26, 0x4000000 /* Set bit 26 for GPIO26 */
+.equ GPIOVAL_27, 0x8000000 /* Set bit 27 for GPIO27 */
 
 
 _start:
@@ -31,6 +45,13 @@ _start:
 
     mov w1, GPIO_10_OUTPUT	/* GPIO Output 10 */
     mov w2, GPIO_20_OUTPUT	/* GPIO Output 20 */
+    orr w2, w2, GPIO_21_OUTPUT	/* GPIO Output 11 */
+    orr w2, w2, GPIO_22_OUTPUT	/* GPIO Output 12 */
+    orr w2, w2, GPIO_23_OUTPUT	/* GPIO Output 13 */
+    orr w2, w2, GPIO_24_OUTPUT	/* GPIO Output 14 */
+    orr w2, w2, GPIO_25_OUTPUT	/* GPIO Output 15 */
+    orr w2, w2, GPIO_26_OUTPUT	/* GPIO Output 16 */
+    orr w2, w2, GPIO_27_OUTPUT	/* GPIO Output 17 */
     
     str w1,[x0, GPFSEL1]        /* FSEL1(SELECT) (set the GPIO to output) */
     str w2,[x0, GPFSEL2]        /* FSEL2(SELECT) (set the GPIO to output) */
@@ -89,12 +110,89 @@ seg_A_on:
     str w2, [x0, #GPFSET0] ;//# store in set register
 ret
 
+seg_B_on:
+    ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
+    ldr w2, = GPIOVAL_21 ;//# value to write to set register
+    str w2, [x0, #GPFSET0] ;//# store in set register
+ret
+
+seg_C_on:
+    ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
+    ldr w2, = GPIOVAL_22 ;//# value to write to set register
+    str w2, [x0, #GPFSET0] ;//# store in set register
+ret
+
+seg_D_on:
+    ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
+    ldr w2, = GPIOVAL_23 ;//# value to write to set register
+    str w2, [x0, #GPFSET0] ;//# store in set register
+ret
+seg_E_on:
+    ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
+    ldr w2, = GPIOVAL_24 ;//# value to write to set register
+    str w2, [x0, #GPFSET0] ;//# store in set register
+ret
+
+seg_F_on:
+    ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
+    ldr w2, = GPIOVAL_25 ;//# value to write to set register
+    str w2, [x0, #GPFSET0] ;//# store in set register
+ret
+seg_G_on:
+    ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
+    ldr w2, = GPIOVAL_26 ;//# value to write to set register
+    str w2, [x0, #GPFSET0] ;//# store in set registerw1
+ret
+seg_DP_on:
+    ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
+    ldr w2, = GPIOVAL_28 ;//# value to write to set register
+    str w2, [x0, #GPFSET0] ;//# store in set register
+ret
+
 seg_A_off:
     ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
     ldr w2, = GPIOVAL_20 ;//# value to write to set register
     str w2, [x0, #GPFCLR0] ;//# store in set register
 ret
 
+seg_B_off:
+    ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
+    ldr w2, = GPIOVAL_21 ;//# value to write to set register
+    str w2, [x0, #GPFCLR0] ;//# store in set register
+ret
+
+seg_C_off:
+    ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
+    ldr w2, = GPIOVAL_22 ;//# value to write to set register
+    str w2, [x0, #GPFCLR0] ;//# store in set register
+ret
+
+seg_D_off:
+    ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
+    ldr w2, = GPIOVAL_23 ;//# value to write to set register
+    str w2, [x0, #GPFCLR0] ;//# store in set register
+ret
+seg_E_off:
+    ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
+    ldr w2, = GPIOVAL_24 ;//# value to write to set register
+    str w2, [x0, #GPFCLR0] ;//# store in set register
+ret
+
+seg_F_off:
+    ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
+    ldr w2, = GPIOVAL_25 ;//# value to write to set register
+    str w2, [x0, #GPFCLR0] ;//# store in set register
+ret
+seg_G_off:
+    ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
+    ldr w2, = GPIOVAL_26 ;//# value to write to set register
+    str w2, [x0, #GPFCLR0] ;//# store in set register
+ret
+seg_DP_off:
+    ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
+    ldr w2, = GPIOVAL_28 ;//# value to write to set register
+    str w2, [x0, #GPFSET0] ;//# store in set register
+ret
 wait_long:
 stp x29, x30, [sp, -32]! 
 mov x29, sp 
@@ -110,7 +208,7 @@ mov x29, sp
     bl wait_short
     bl led_off
     bl wait_short
-ldp x29, x30, [sp], 32 
+ldp x29, x30, [sp], 32 GPFSET0
 ret
 
 led_cycle_long:
@@ -123,7 +221,55 @@ mov x29, sp
 ldp x29, x30, [sp], 32 
 ret
 
-/* Morse Alphabet*/
+/* 7-Segment Display Letters */
+
+let_s_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_A_on
+    bl seg_F_on
+    bl seg_G_on
+    bl seg_C_on
+    bl seg_D_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_s_off:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_A_off
+    bl seg_F_off
+    bl seg_G_off
+    bl seg_C_off
+    bl seg_D_off
+    ldp x29, x30, [sp], 32
+    ret
+
+let_o_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_A_on
+    bl seg_B_on
+    bl seg_C_on
+    bl seg_D_on
+    bl seg_E_on
+    bl seg_F_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_o_off:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_A_off
+    bl seg_B_off
+    bl seg_C_off
+    bl seg_D_off
+    bl seg_E_off
+    bl seg_F_off
+    ldp x29, x30, [sp], 32
+    ret
+
+/* Morse Alphabet */
 
 a: 
 	stp x29, x30, [sp, -32]! 
@@ -268,9 +414,11 @@ n:
 o:
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+    bl let_o_on
 	bl led_cycle_long
 	bl led_cycle_long
 	bl led_cycle_long
+    bl let_o_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -310,11 +458,11 @@ r:
 s:
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
-    bl seg_A_on
+    bl let_s_on
 	bl led_cycle_short
 	bl led_cycle_short
 	bl led_cycle_short
-    bl seg_A_off
+    bl let_s_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
