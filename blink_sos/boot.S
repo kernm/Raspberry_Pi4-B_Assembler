@@ -3,7 +3,7 @@
 .equ GPIO_BASE, 0xFE200000
 .equ GPFSEL2, 0x08
 
-.equ GPIO_24_OUTPUT, 0x1000
+.equ GPIO_24_OUTPUT, 0x1000000
 
 .equ GPFSET0, 0x1c //# Power 1 (LED power on)
 .equ GPFCLR0, 0x28 //# Power 0 (LED power off)
