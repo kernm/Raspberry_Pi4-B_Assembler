@@ -1,6 +1,6 @@
 .global	_start
  
-.equ GPIO_BASE, 0xFE200000
+.equ GPIO_BASE, 0x7E200000
 .equ GPFSEL2, 0x08
 
 .equ GPIO_24_OUTPUT, 0x1000
