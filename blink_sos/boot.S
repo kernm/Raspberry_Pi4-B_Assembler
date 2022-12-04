@@ -208,7 +208,7 @@ mov x29, sp
     bl wait_short
     bl led_off
     bl wait_short
-ldp x29, x30, [sp], 32 GPFSET0
+ldp x29, x30, [sp], 32
 ret
 
 led_cycle_long:
