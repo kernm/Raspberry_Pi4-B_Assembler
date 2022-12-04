@@ -33,7 +33,7 @@ _start:
     mov w2, GPIO_20_OUTPUT	/* GPIO Output 20 */
     
     str w1,[x0, GPFSEL1]        /* FSEL1(SELECT) (set the GPIO to output) */
-    str w2,[x0, GPFSEL2]        /* FSEL2(SELECT) (set the GPIO to output) */
+ /*   str w2,[x0, GPFSEL2]        /* FSEL2(SELECT) (set the GPIO to output) */
 
 main:
     bl led_on
