@@ -92,21 +92,19 @@ ldp x29, x30, [sp], 32
 ret
 
 seg_A_on:
-stp x29, x30, [sp, -32]! 
-mov x29, sp 
-     ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
+
+    ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
     ldr w2, = GPIOVAL_20 ;//# value to write to set register
     str w2, [x0, #GPFSET0] ;//# store in set register
-ldp x29, x30, [sp], 32 
+
 ret
 
 seg_A_off:
-stp x29, x30, [sp, -32]! 
-mov x29, sp 
+
     ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
-    ldr w1, = GPIOVAL_20 ;//# value to write to set register
-    str w1, [x0, #GPFCLR0] ;//# store in set register
-ldp x29, x30, [sp], 32 
+    ldr w2, = GPIOVAL_20 ;//# value to write to set register
+    str w2, [x0, #GPFCLR0] ;//# store in set register
+
 ret
 
 wait_long:
