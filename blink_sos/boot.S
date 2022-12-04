@@ -94,14 +94,17 @@ wait_short:
 wait_long:      /* Wait 1s */
     bl wait_short
     bl wait_short
+    ret
 
 led_on:
     ldr w1, = GPIOVAL       /* value to write to set register */
     str w1, [x0, #GPFSET0]  /* store in set register */
+    ret
 
 led_off:
     ldr w1, =GPIOVAL        /* value to write to set register */
     str w1, [x0, #GPFCLR0]  /* store in set register */
+    ret
 
 loop_kurz:
     bl led_on
