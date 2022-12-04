@@ -76,17 +76,19 @@ wait_short:
 ret                         /* Return to main */
 
 led_on:
-stp x29, x30, [sp, -32]!
+stp x29, x30, [sp, -16]!
 mov x29, sp
+ldr x0,=0xFE200000       /* Basis adresse in x0 speichern */
     ldr w1, = GPIOVAL       /* value to write to set register */
     str w1, [x0, #GPFSET0]  /* store in set register */
-ldp x29, x30, [sp], 32
+ldp x29, x30, [sp], 16
 ret
 
 led_off:
-stp x29, x30, [sp, -32]!
+stp x29, x30, [sp, -16]!
 mov x29, sp
+ldr x0,=0xFE200000       /* Basis adresse in x0 speichern */
     ldr w1, =GPIOVAL        /* value to write to set register */
     str w1, [x0, #GPFCLR0]  /* store in set register */
-ldp x29, x30, [sp], 32
+ldp x29, x30, [sp], 16
 ret
