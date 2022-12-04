@@ -32,15 +32,15 @@ _start:
     mov w1, GPIO_24_OUTPUT	/* GPIO Output 24 */
     mov w2, GPIO_20_OUTPUT	/* GPIO Output 20 */
     
-    str w2,[x0, GPFSEL2]        /* FSEL2(SELECT) (set the GPIO to output) */
     str w1,[x0, GPFSEL1]        /* FSEL1(SELECT) (set the GPIO to output) */
-  
+    str w2,[x0, GPFSEL2]        /* FSEL2(SELECT) (set the GPIO to output) */
 
 main:
-    bl s
-    bl o
-    bl s
+    bl led_on
+    bl seg_A_on
     bl wait_long
+    bl led_off
+    bl seg_A_off
     b main
 
 wait_short:
