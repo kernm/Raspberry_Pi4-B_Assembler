@@ -31,13 +31,14 @@ _start:
     mov w1,#0x1000           /* Bit 12(13) setzen */
     str w1,[x0,#0x08]        /* FSEL2(SELECT) (funktion wählen) */
 
-//    mov w1,#0x1000000        /* Bit 24 (25) setzen */
-//    str w1,[x0,#0x1c]        /* SET (voltage setzen) */
+;    mov w1,#0x1000000        /* Bit 24 (25) setzen */
+;    str w1,[x0,#0x1c]        /* SET (voltage setzen) */
 
 main:
     bl led_on
     bl wait_short
     bl led_off
+    bl wait_short
     bl main
 
 wait_short:
