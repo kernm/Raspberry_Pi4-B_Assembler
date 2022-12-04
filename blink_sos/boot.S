@@ -42,38 +42,31 @@ main:
     bl main
 
 wait_short:
-.initTimer:                  /* Start of Time */
-    stp x29, x30, [sp, -32]!  /* Store Pair of Registers, in this case the sp = stack pointer
-                                x29 = frame pointer, x30 = link register
-                                The memory location where the two values are stored is computed as sp -32
-                                The ! at the end updates the sp to the computed value */
-    mov x29, sp               /* store stack pointer.
-                                At this point the stack pointer and the frame pointer are referring to the same memory address. */
-  
-  /* Braucht es vermutlich nicht, kann entfernt werden.... */
-    str x0, [sp, 24]          /* push argument (timeout) on stack (what for?)
-                               Callee-saved registers (AKA non-volatile registers, or call-preserved) are used to hold long-lived values that should be preserved across calls. */
-  /* Ab hier brauchts den Code wieder ;) */
+.initTimer:
+    stp x29, x30, [sp, -32]!
+    mov x29, sp 
 
-    .equ short_Time, 500    /* Defines the wait time in ms */
-    mov x4, short_Time      /* Move short_time to x4 for 500ms wait */
+    str x0, [sp, 24]
 
-    mrs x3, CNTFRQ_EL0       /* Read frequency of system counter (read hz) */
-    mov x2, 1000             /* Set x2 to 1000 (to divide frequency in ms) */
-    sdiv x3, x3, x2          /* Divide the Frequency of the System Counter by 1000, to deal with it in ms */
+    .equ short_Time, 500
+    mov x4, short_Time
 
-    mul x5, x3, x4          /* multiply the x3 (System counter in HZ /1000) by set wait time in ms from x4 */
-    msr CNTP_TVAL_EL0, x5  /* Write a comparator value to CNTP_TVAL_EL0, a 64-bit register. */
-    mov x1, #1               /* Write 1 to x1, to enable counter */
-    msr CNTP_CTL_EL0, x1    /* Enable the counter and interrupt generation */
+    mrs x3, CNTFRQ_EL0
+    mov x2, 1000
+    sdiv x3, x3, x2
 
-.readTimer:                  /* See if the timer condition is met */
-    mrs x5, CNTP_CTL_EL0    /* Read the Status of the Timer */
-    and x5, x5, 0b1         /* See if x5 equals 0b1 (timer condition is met) */
-    cbz x5, .readTimer      /* If x3 is 0 (Timer condition is not met) go to .readTimer */
+    mul x5, x3, x4
+    msr CNTP_TVAL_EL0, x5
+    mov x1, #1
+    msr CNTP_CTL_EL0, x1
 
-    ldp x29, x30, [sp], 32    /* load the old frame pointer and return address, and also move the stack pointer back up 32 bit */
-ret                         /* Return to main */
+.readTimer:
+    mrs x5, CNTP_CTL_EL0
+    and x5, x5, 0b1
+    cbz x5, .readTimer
+
+    ldp x29, x30, [sp], 32
+ret
 
 led_on:
 stp x29, x30, [sp, -16]!
