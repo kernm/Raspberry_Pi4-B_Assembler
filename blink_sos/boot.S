@@ -36,9 +36,9 @@ _start:
     str w2,[x0, GPFSEL2]        /* FSEL2(SELECT) (set the GPIO to output) */
 
 main:
-    bl led_on
+    bl seg_A_on
     bl wait_short
-    bl led_off
+    bl seg_A_off
     b main
 
 wait_short:
