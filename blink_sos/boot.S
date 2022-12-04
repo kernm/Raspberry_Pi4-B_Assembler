@@ -76,11 +76,17 @@ wait_short:
 ret                         /* Return to main */
 
 led_on:
+stp x29, x30, [sp, -32]!
+mov x29, sp
     ldr w1, = GPIOVAL       /* value to write to set register */
     str w1, [x0, #GPFSET0]  /* store in set register */
+ldp x29, x30, [sp], 32
 ret
 
 led_off:
+stp x29, x30, [sp, -32]!
+mov x29, sp
     ldr w1, =GPIOVAL        /* value to write to set register */
     str w1, [x0, #GPFCLR0]  /* store in set register */
+ldp x29, x30, [sp], 32
 ret
