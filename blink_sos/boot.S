@@ -152,6 +152,7 @@ e:
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
 	bl led_cycle_short
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
@@ -218,6 +219,7 @@ l:
 	bl led_cycle_long
 	bl led_cycle_short
 	bl led_cycle_short
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
@@ -243,6 +245,7 @@ o:
 	bl led_cycle_long
 	bl led_cycle_long
 	bl led_cycle_long
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
