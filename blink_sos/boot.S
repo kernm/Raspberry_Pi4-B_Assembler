@@ -1,14 +1,17 @@
 .global	_start
  
 .equ GPIO_BASE, 0xFE200000
-.equ GPFSEL2, 0x08
+.equ GPFSEL2, 0x08 /* GPIO Function Select 2 */
 
 .equ GPIO_24_OUTPUT, 0x1000
+.equ GPIO_20_OUTPUT, 0x1
 
 .equ GPFSET0, 0x1c //# Power 1 (LED power on)
 .equ GPFCLR0, 0x28 //# Power 0 (LED power off)
 
-.equ GPIOVAL, 0x1000000 /* Was Passiert hier?????????????????????*/
+.equ GPIOVAL_24, 0x1000000 /* Set bit 24 for GPIO24*/
+.equ GPIOVAL_20, 0x100000 /* Set bit 20 for GPIO20*/
+
 
 _start:
     mrs x1, mpidr_el1        /* move register system (MPIDR_EL1, Multiprocessor Affinity Register, EL1) to x1 */
@@ -25,10 +28,16 @@ _start:
     mov w1, GPIO_24_OUTPUT	/* GPIO Output 24 */
     str w1,[x0, GPFSEL2]        /* FSEL2(SELECT) (set the GPIO to output) */
 
+    ldr x0, = GPIO_BASE		/* set GPIO Base */
+    mov w1, GPIO_20_OUTPUT	/* GPIO Output 20 */
+    str w1,[x0, GPFSEL2]        /* FSEL2(SELECT) (set the GPIO to output) */
+
 main:
+    bl seg_A_on
     bl s
     bl o
     bl s
+    bl seg_A_off
     bl wait_long
     b main
 
@@ -65,7 +74,7 @@ led_on:
 stp x29, x30, [sp, -32]! 
 mov x29, sp 
     ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
-    ldr w1, = GPIOVAL ;//# value to write to set register
+    ldr w1, = GPIOVAL_24 ;//# value to write to set register
     str w1, [x0, #GPFSET0] ;//# store in set register
 ldp x29, x30, [sp], 32 
 ret
@@ -74,7 +83,25 @@ led_off:
 stp x29, x30, [sp, -32]! 
 mov x29, sp 
     ldr x0, = GPIO_BASE      /* Basis adresse in x0 speichern */
-    ldr w1, = GPIOVAL ;//# value to write to set register
+    ldr w1, = GPIOVAL_24 ;//# value to write to set register
+    str w1, [x0, #GPFCLR0] ;//# store in set register
+ldp x29, x30, [sp], 32 
+ret
+
+seg_A_on:
+stp x29, x30, [sp, -32]! 
+mov x29, sp 
+    ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
+    ldr w1, = GPIOVAL_20 ;//# value to write to set register
+    str w1, [x0, #GPFSET0] ;//# store in set register
+ldp x29, x30, [sp], 32 
+ret
+
+seg_A_off:
+stp x29, x30, [sp, -32]! 
+mov x29, sp 
+    ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
+    ldr w1, = GPIOVAL_20 ;//# value to write to set register
     str w1, [x0, #GPFCLR0] ;//# store in set register
 ldp x29, x30, [sp], 32 
 ret
