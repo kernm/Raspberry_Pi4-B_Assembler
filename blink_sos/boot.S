@@ -45,12 +45,12 @@ wait_short:
     stp x29, x30, [sp, -32]!  /* Store Pair of Registers, in this case the sp = stack pointer
                                 x29 = frame pointer, x30 = link register
                                 The memory location where the two values are stored is computed as sp -32
-                                The ! at the end updates the sp to the computed value*/
+                                The ! at the end updates the sp to the computed value */
     mov x29, sp               /* store stack pointer.
-                                At this point the stack pointer and the frame pointer are referring to the same memory address.*/
+                                At this point the stack pointer and the frame pointer are referring to the same memory address. */
   
   /* Braucht es vermutlich nicht, kann entfernt werden.... */
-    str x0, [sp, 24]          ;/* push argument (timeout) on stack (what for?)
+    str x0, [sp, 24]          /* push argument (timeout) on stack (what for?) */
    ;                            Callee-saved registers (AKA non-volatile registers, or call-preserved) are used to hold long-lived values that should be preserved across calls.*/
   /* Ab hier brauchts den Code wieder ;) */
 
@@ -61,10 +61,10 @@ wait_short:
     mov x2, 1000             /* Set x2 to 1000 (to divide frequency in ms) */
     sdiv x3, x3, x2          /* Divide the Frequency of the System Counter by 1000, to deal with it in ms */
 
-    mul x5, x3, x4          /* multiply the x3 (System counter in HZ /1000) by set wait time in ms from x4*/
+    mul x5, x3, x4          /* multiply the x3 (System counter in HZ /1000) by set wait time in ms from x4 */
     msr CNTP_TVAL_EL0, x5  /* Write a comparator value to CNTP_TVAL_EL0, a 64-bit register. */
     mov x1, #1               /* Write 1 to x1, to enable counter */
-    msr CNTP_CTL_EL0, x1    /* Enable the counter and interrupt generation*/
+    msr CNTP_CTL_EL0, x1    /* Enable the counter and interrupt generation */
 
 .readTimer:                  /* See if the timer condition is met */
     mrs x5, CNTP_CTL_EL0    /* Read the Status of the Timer */
@@ -74,37 +74,12 @@ wait_short:
     ldp x29, x30, [sp], 32    /* load the old frame pointer and return address, and also move the stack pointer back up 32 bit */
 ret                         /* Return to main */
 
-; wait_long:      /* Wait 1s */
-;     bl wait_short
-;     bl wait_short
-; ret
-
 led_on:
-; stp x29, x30, [sp, -32]!
-; mov x29, sp 
     ldr w1, = GPIOVAL       /* value to write to set register */
     str w1, [x0, #GPFSET0]  /* store in set register */
-; ldp x29, x30, [sp], 32
 ret
 
 led_off:
-; stp x29, x30, [sp, -32]!
-; mov x29, sp 
     ldr w1, =GPIOVAL        /* value to write to set register */
     str w1, [x0, #GPFCLR0]  /* store in set register */
-; ldp x29, x30, [sp], 32
 ret
-
-; loop_kurz:
-;     bl led_on
-;     bl wait_short
-;     bl led_off
-;     bl wait_short
-; ret
-
-; loop_lang:
-;     bl led_on
-;     bl wait_long
-;     bl led_off
-;     bl wait_short
-; ret
