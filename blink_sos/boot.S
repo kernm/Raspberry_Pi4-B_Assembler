@@ -86,10 +86,10 @@ wait_short:
 
 ret                     /* Return to main */
 
-wait_long:      /* Wait 1s */
-    bl wait_short
-    bl wait_short
-ret
+; wait_long:      /* Wait 1s */
+;     bl wait_short
+;     bl wait_short
+; ret
 
 led_on:
     ldr w1, = GPIOVAL       /* value to write to set register */
@@ -108,9 +108,9 @@ loop_kurz:
     bl wait_short
 ret
 
-loop_lang:
-    bl led_on
-    bl wait_long
-    bl led_off
-    bl wait_short
-ret
+; loop_lang:
+;     bl led_on
+;     bl wait_long
+;     bl led_off
+;     bl wait_short
+; ret
