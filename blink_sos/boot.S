@@ -10,7 +10,7 @@
 .equ GPFSET0, 0x1c //# Power 1 (LED power on)
 .equ GPFCLR0, 0x28 //# Power 0 (LED power off)
 
-.equ GPIOVAL_10, 0x100000 /* Set bit 10 for GPIO10 */
+.equ GPIOVAL_10, 0x400 /* Set bit 10 for GPIO10 */
 .equ GPIOVAL_20, 0x100000 /* Set bit 20 for GPIO20 */
 
 
