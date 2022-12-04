@@ -44,9 +44,11 @@ _start:
     mov x27, 4 
 
 main:
-    bl led_on
+    ldr w1, = GPIOVAL       /* value to write to set register */
+    str w1, [x0, #GPFSET0]  /* store in set register */
     bl wait_short
-    bl led_off
+    ldr w1, =GPIOVAL        /* value to write to set register */
+    str w1, [x0, #GPFCLR0]  /* store in set register */
     bl wait_short
     bl main
 
