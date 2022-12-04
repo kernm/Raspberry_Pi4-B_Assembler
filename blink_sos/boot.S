@@ -45,14 +45,6 @@ _start:
 
 main:
     bl loop_kurz
-    bl loop_kurz
-    bl loop_kurz
-    bl wait_long
-    bl loop_lang
-    bl loop_lang
-    bl loop_lang
-    bl wait_long
-    bl wait_long
     bl main
 
 wait_short:
@@ -89,22 +81,22 @@ wait_short:
 
     ldp x29, x30, [sp], 32    /* load the old frame pointer and return address, and also move the stack pointer back up 32 bit */
 
-    ret                     /* Return to main */
+ret                     /* Return to main */
 
 wait_long:      /* Wait 1s */
     bl wait_short
     bl wait_short
-    ret
+ret
 
 led_on:
     ldr w1, = GPIOVAL       /* value to write to set register */
     str w1, [x0, #GPFSET0]  /* store in set register */
-    ret
+ret
 
 led_off:
     ldr w1, =GPIOVAL        /* value to write to set register */
     str w1, [x0, #GPFCLR0]  /* store in set register */
-    ret
+ret
 
 loop_kurz:
     bl led_on
