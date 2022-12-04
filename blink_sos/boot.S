@@ -190,7 +190,7 @@ seg_G_off:
 ret
 seg_DP_off:
     ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
-    ldr w2, = GPIOVAL_28 ;//# value to write to set register
+    ldr w2, = GPIOVAL_27 ;//# value to write to set register
     str w2, [x0, #GPFSET0] ;//# store in set register
 ret
 wait_long:
