@@ -23,7 +23,7 @@ _start:
 	mov	sp, #0x80000
     ldr x0, = GPIO_BASE		/* set GPIO Base */
     mov w1, GPIO_24_OUTPUT	/* GPIO Output 24 */
-    str w1,[x0, GPFSEL2]        /* FSEL2(SELECT) (funktion wählen) */
+    str w1,[x0, GPFSEL2]        /* FSEL2(SELECT) (set the GPIO to output) */
 
 main:
     bl s
@@ -65,7 +65,7 @@ led_on:
 stp x29, x30, [sp, -32]! 
 mov x29, sp 
     ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
-    ldr w1, = GPIOVAL ;//# value to write to set register
+    ldr w1, = GPIO_24_OUTPUT ;//# value to write to set register
     str w1, [x0, #GPFSET0] ;//# store in set register
 ldp x29, x30, [sp], 32 
 ret
@@ -74,7 +74,7 @@ led_off:
 stp x29, x30, [sp, -32]! 
 mov x29, sp 
     ldr x0, = GPIO_BASE      /* Basis adresse in x0 speichern */
-    ldr w1, = GPIOVAL ;//# value to write to set register
+    ldr w1, = GPIO_24_OUTPUT ;//# value to write to set register
     str w1, [x0, #GPFCLR0] ;//# store in set register
 ldp x29, x30, [sp], 32 
 ret
