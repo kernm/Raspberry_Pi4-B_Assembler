@@ -28,11 +28,11 @@ _start:
 
 3: /* Set GPIOs as Output*/
     ldr x0, = GPIO_BASE		/* set GPIO Base */
-    mov w1, GPIO_24_OUTPUT	/* GPIO Output 24 */
-    str w1,[x0, GPFSEL1]        /* FSEL2(SELECT) (set the GPIO to output) */
 
-    ldr x0, = GPIO_BASE		/* set GPIO Base */
+    mov w1, GPIO_24_OUTPUT	/* GPIO Output 24 */
     mov w2, GPIO_20_OUTPUT	/* GPIO Output 20 */
+    
+    str w1,[x0, GPFSEL1]        /* FSEL1(SELECT) (set the GPIO to output) */
     str w2,[x0, GPFSEL2]        /* FSEL2(SELECT) (set the GPIO to output) */
 
 main:
