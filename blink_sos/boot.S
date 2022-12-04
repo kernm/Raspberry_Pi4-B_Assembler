@@ -70,7 +70,7 @@ wait_short:
     sdiv x3, x3, x2          /* Divide the Frequency of the System Counter by 1000, to deal with it in ms */
 
     mul x5, x3, x4          /* multiply the x3 (System counter in HZ /1000) by set wait time in ms from x4*/
-    msr CNTP_CVAL_EL0, x5  /* Write a comparator value to CNTP_CVAL_EL0, a 64-bit register. */
+    msr CNTP_TVAL_EL0, x5  /* Write a comparator value to CNTP_CVAL_EL0, a 64-bit register. */
     mov x1, #1               /* Write 1 to x1, to enable counter */
     msr CNTP_CTL_EL0, x1    /* Enable the counter and interrupt generation*/
 
