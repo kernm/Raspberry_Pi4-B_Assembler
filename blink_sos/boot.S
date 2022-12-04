@@ -36,9 +36,9 @@ _start:
     str w2,[x0, GPFSEL2]        /* FSEL2(SELECT) (set the GPIO to output) */
 
 main:
-    bl seg_A_on
+    bl led_on
     bl wait_short
-    bl seg_A_off
+    bl led_off
     b main
 
 wait_short:
@@ -84,14 +84,14 @@ ret
 
 seg_A_on:
     ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
-    ldr w1, = GPIOVAL_20 ;//# value to write to set register
-    str w1, [x0, #GPFSET0] ;//# store in set register
+    ldr w2, = GPIOVAL_20 ;//# value to write to set register
+    str w2, [x0, #GPFSET0] ;//# store in set register
 ret
 
 seg_A_off:
     ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
-    ldr w1, = GPIOVAL_20 ;//# value to write to set register
-    str w1, [x0, #GPFCLR0] ;//# store in set register
+    ldr w2, = GPIOVAL_20 ;//# value to write to set register
+    str w2, [x0, #GPFCLR0] ;//# store in set register
 ret
 
 wait_long:
