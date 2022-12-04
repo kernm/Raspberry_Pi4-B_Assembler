@@ -26,12 +26,9 @@ _start:
     str w1,[x0, GPFSEL2]        /* FSEL2(SELECT) (funktion wählen) */
 
 main:
-    bl led_cycle_short
-    bl led_cycle_short
-    bl led_cycle_short
-    bl led_cycle_long
-    bl led_cycle_long
-    bl led_cycle_long
+    bl s
+    bl o
+    bl s
     b main
 
 wait_short:
@@ -110,3 +107,243 @@ mov x29, sp
     bl wait_short
 ldp x29, x30, [sp], 32 
 ret
+
+/* Morse Alphabet*/
+
+a: 
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_short
+	bl led_cycle_long
+	ldp x29, x30, [sp], 32
+	ret
+	
+b:
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_long
+	bl led_cycle_short
+	bl led_cycle_short
+	bl led_cycle_short
+	ldp x29, x30, [sp], 32
+	ret
+
+c:
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_long
+	bl led_cycle_short
+	bl led_cycle_long
+	bl led_cycle_short
+	ldp x29, x30, [sp], 32
+	ret
+
+d:
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp 
+	bl led_cycle_long
+	bl led_cycle_short
+	bl led_cycle_short
+	ldp x29, x30, [sp], 32
+	ret
+
+e:
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_short
+	ldp x29, x30, [sp], 32
+	ret
+
+f: 
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_short
+	bl led_cycle_short
+	bl led_cycle_long
+	bl led_cycle_short
+	ldp x29, x30, [sp], 32
+	ret
+
+g:
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_long
+	bl led_cycle_long
+	bl led_cycle_short
+	ldp x29, x30, [sp], 32
+	ret
+
+h:
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_short
+	bl led_cycle_short
+	bl led_cycle_short
+	bl led_cycle_short 
+	ldp x29, x30, [sp], 32
+	ret
+
+i:
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_short
+	bl led_cycle_short
+	ldp x29, x30, [sp], 32
+	ret
+
+j:
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_short
+	bl led_cycle_long
+	bl led_cycle_long
+	bl led_cycle_long
+	ldp x29, x30, [sp], 32
+	ret
+
+k:
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_long
+	bl led_cycle_short
+	bl led_cycle_long
+	ldp x29, x30, [sp], 32
+	ret
+
+l:
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_short
+	bl led_cycle_long
+	bl led_cycle_short
+	bl led_cycle_short
+	ldp x29, x30, [sp], 32
+	ret
+
+m:
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_long
+	bl led_cycle_long
+	ldp x29, x30, [sp], 32
+	ret
+
+n:
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_long
+	bl led_cycle_short
+	ldp x29, x30, [sp], 32
+	ret
+
+o:
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_long
+	bl led_cycle_long
+	bl led_cycle_long
+	ldp x29, x30, [sp], 32
+	ret
+
+p: 
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_short
+	bl led_cycle_long
+	bl led_cycle_long
+	bl led_cycle_short
+	ldp x29, x30, [sp], 32
+	ret
+
+q:
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_long
+	bl led_cycle_long
+	bl led_cycle_short
+	bl led_cycle_long
+	ldp x29, x30, [sp], 32
+	ret
+
+r: 
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_short
+	bl led_cycle_long
+	bl led_cycle_short
+	ldp x29, x30, [sp], 32
+	ret
+
+s:
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_short
+	bl led_cycle_short
+	bl led_cycle_short
+	ldp x29, x30, [sp], 32
+	ret
+
+t:
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_long
+	ldp x29, x30, [sp], 32
+	ret
+
+u: 
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_short
+	bl led_cycle_short
+	bl led_cycle_long
+	ldp x29, x30, [sp], 32
+	ret
+
+v: 
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_short
+	bl led_cycle_short
+	bl led_cycle_short
+	bl led_cycle_long
+	ldp x29, x30, [sp], 32
+	ret
+
+w:
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_short
+	bl led_cycle_long
+	bl led_cycle_long
+	ldp x29, x30, [sp], 32
+	ret
+
+x:
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_long
+	bl led_cycle_short
+	bl led_cycle_short
+	bl led_cycle_long
+	ldp x29, x30, [sp], 32
+	ret
+
+y:
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_long
+	bl led_cycle_short
+	bl led_cycle_long
+	bl led_cycle_long
+	ldp x29, x30, [sp], 32
+	ret
+
+z:
+	stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl led_cycle_long
+	bl led_cycle_long
+	bl led_cycle_short
+	bl led_cycle_short
+	ldp x29, x30, [sp], 32
+	ret
