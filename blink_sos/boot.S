@@ -3,7 +3,7 @@
 .equ GPIO_BASE, 0xFE200000
 .equ GPFSEL2, 0x08
 
-.equ GPIO_24_OUTPUT, 0x1000000
+.equ GPIO_24_OUTPUT, 0x1000
 
 .equ GPFSET0, 0x1c //# Power 1 (LED power on)
 .equ GPFCLR0, 0x28 //# Power 0 (LED power off)
@@ -65,7 +65,7 @@ led_on:
 stp x29, x30, [sp, -32]! 
 mov x29, sp 
     ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
-    ldr w1, = GPIO_24_OUTPUT ;//# value to write to set register
+    ldr w1, = GPIOVAL ;//# value to write to set register
     str w1, [x0, #GPFSET0] ;//# store in set register
 ldp x29, x30, [sp], 32 
 ret
@@ -74,7 +74,7 @@ led_off:
 stp x29, x30, [sp, -32]! 
 mov x29, sp 
     ldr x0, = GPIO_BASE      /* Basis adresse in x0 speichern */
-    ldr w1, = GPIO_24_OUTPUT ;//# value to write to set register
+    ldr w1, = GPIOVAL ;//# value to write to set register
     str w1, [x0, #GPFCLR0] ;//# store in set register
 ldp x29, x30, [sp], 32 
 ret
