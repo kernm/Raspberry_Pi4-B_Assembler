@@ -44,7 +44,10 @@ _start:
     mov x27, 4 
 
 main:
-    bl loop_kurz
+    bl led_on
+    bl wait_short
+    bl led_off
+    bl wait_short
     bl main
 
 wait_short:
