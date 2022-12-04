@@ -34,15 +34,6 @@ _start:
 //    mov w1,#0x1000000        /* Bit 24 (25) setzen */
 //    str w1,[x0,#0x1c]        /* SET (voltage setzen) */
 
-    ; #set counter
-    ; ldr x22, =0x300000 
-    ; ldr x23, =0x100000
-    ; ldr x24, =0x800000
-    ; ldr x25, =0xf00000
-
-    mov x26, 4 
-    mov x27, 4 
-
 main:
     bl led_on
     bl wait_short
@@ -59,7 +50,7 @@ wait_short:
                                 At this point the stack pointer and the frame pointer are referring to the same memory address.*/
   
   /* Braucht es vermutlich nicht, kann entfernt werden.... */
-    str x0, [sp, 24]          /* push argument (timeout) on stack (what for?)
+    str x0, [sp, 24]          ;/* push argument (timeout) on stack (what for?)
    ;                            Callee-saved registers (AKA non-volatile registers, or call-preserved) are used to hold long-lived values that should be preserved across calls.*/
   /* Ab hier brauchts den Code wieder ;) */
 
@@ -81,7 +72,7 @@ wait_short:
     cbz x5, .readTimer      /* If x3 is 0 (Timer condition is not met) go to .readTimer */
 
     ldp x29, x30, [sp], 32    /* load the old frame pointer and return address, and also move the stack pointer back up 32 bit */
-ret                     /* Return to main */
+ret                         /* Return to main */
 
 ; wait_long:      /* Wait 1s */
 ;     bl wait_short
@@ -94,7 +85,7 @@ led_on:
     ldr w1, = GPIOVAL       /* value to write to set register */
     str w1, [x0, #GPFSET0]  /* store in set register */
 ; ldp x29, x30, [sp], 32
-B LR
+ret
 
 led_off:
 ; stp x29, x30, [sp, -32]!
@@ -102,14 +93,14 @@ led_off:
     ldr w1, =GPIOVAL        /* value to write to set register */
     str w1, [x0, #GPFCLR0]  /* store in set register */
 ; ldp x29, x30, [sp], 32
-B LR
-
-loop_kurz:
-    bl led_on
-    bl wait_short
-    bl led_off
-    bl wait_short
 ret
+
+; loop_kurz:
+;     bl led_on
+;     bl wait_short
+;     bl led_off
+;     bl wait_short
+; ret
 
 ; loop_lang:
 ;     bl led_on
