@@ -44,7 +44,7 @@ wait_short:
     str x0, [sp, 24]          /* push argument (timeout) on stack (what for?)
                                 Callee-saved registers (AKA non-volatile registers, or call-preserved) are used to hold long-lived values that should be preserved across calls.*/
 
-    .equ short_Time, 500    /* Defines the wait time in ms */
+    .equ short_Time, 250    /* Defines the wait time in ms */
     mov x4, short_Time      /* Move short_time to x4 for 500ms wait */
 
     mrs x3, CNTFRQ_EL0       /* Read frequency of system counter (read hz) */
@@ -116,6 +116,7 @@ a:
 	mov x29, sp
 	bl led_cycle_short
 	bl led_cycle_long
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 	
@@ -126,6 +127,7 @@ b:
 	bl led_cycle_short
 	bl led_cycle_short
 	bl led_cycle_short
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
@@ -136,6 +138,7 @@ c:
 	bl led_cycle_short
 	bl led_cycle_long
 	bl led_cycle_short
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
@@ -145,6 +148,7 @@ d:
 	bl led_cycle_long
 	bl led_cycle_short
 	bl led_cycle_short
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
@@ -163,6 +167,7 @@ f:
 	bl led_cycle_short
 	bl led_cycle_long
 	bl led_cycle_short
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
@@ -172,6 +177,7 @@ g:
 	bl led_cycle_long
 	bl led_cycle_long
 	bl led_cycle_short
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
@@ -182,6 +188,7 @@ h:
 	bl led_cycle_short
 	bl led_cycle_short
 	bl led_cycle_short 
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
@@ -190,6 +197,7 @@ i:
 	mov x29, sp
 	bl led_cycle_short
 	bl led_cycle_short
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
@@ -200,6 +208,7 @@ j:
 	bl led_cycle_long
 	bl led_cycle_long
 	bl led_cycle_long
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
@@ -209,6 +218,7 @@ k:
 	bl led_cycle_long
 	bl led_cycle_short
 	bl led_cycle_long
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
@@ -228,6 +238,7 @@ m:
 	mov x29, sp
 	bl led_cycle_long
 	bl led_cycle_long
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
@@ -236,6 +247,7 @@ n:
 	mov x29, sp
 	bl led_cycle_long
 	bl led_cycle_short
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
@@ -256,6 +268,7 @@ p:
 	bl led_cycle_long
 	bl led_cycle_long
 	bl led_cycle_short
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
@@ -266,6 +279,7 @@ q:
 	bl led_cycle_long
 	bl led_cycle_short
 	bl led_cycle_long
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
@@ -275,6 +289,7 @@ r:
 	bl led_cycle_short
 	bl led_cycle_long
 	bl led_cycle_short
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
@@ -284,6 +299,7 @@ s:
 	bl led_cycle_short
 	bl led_cycle_short
 	bl led_cycle_short
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
@@ -291,6 +307,7 @@ t:
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
 	bl led_cycle_long
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
@@ -300,6 +317,7 @@ u:
 	bl led_cycle_short
 	bl led_cycle_short
 	bl led_cycle_long
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
@@ -310,6 +328,7 @@ v:
 	bl led_cycle_short
 	bl led_cycle_short
 	bl led_cycle_long
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
@@ -319,6 +338,7 @@ w:
 	bl led_cycle_short
 	bl led_cycle_long
 	bl led_cycle_long
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
@@ -329,6 +349,7 @@ x:
 	bl led_cycle_short
 	bl led_cycle_short
 	bl led_cycle_long
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
@@ -339,6 +360,7 @@ y:
 	bl led_cycle_short
 	bl led_cycle_long
 	bl led_cycle_long
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
 
@@ -349,5 +371,6 @@ z:
 	bl led_cycle_long
 	bl led_cycle_short
 	bl led_cycle_short
+    bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
