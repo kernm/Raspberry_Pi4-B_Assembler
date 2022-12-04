@@ -26,13 +26,13 @@ _start:
     str w1,[x0, GPFSEL2]        /* FSEL2(SELECT) (funktion wählen) */
 
 main:
-    bl loop_short
-    bl loop_short
-    bl loop_short
-    bl loop_long
-    bl loop_long
-    bl loop_long
-    bl main
+    bl led_cycle_short
+    bl led_cycle_short
+    bl led_cycle_short
+    bl led_cycle_long
+    bl led_cycle_long
+    bl led_cycle_long
+    b main
 
 wait_short:
 .initTimer:                  /* Start of Timer */
@@ -91,7 +91,7 @@ mov x29, sp
 ldp x29, x30, [sp], 32 
 ret
 
-loop_short:
+led_cycle_short:
 stp x29, x30, [sp, -32]! 
 mov x29, sp 
     bl led_on
@@ -101,7 +101,7 @@ mov x29, sp
 ldp x29, x30, [sp], 32 
 ret
 
-loop_long:
+led_cycle_long:
 stp x29, x30, [sp, -32]! 
 mov x29, sp 
     bl led_on
