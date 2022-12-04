@@ -1,6 +1,7 @@
 .global	_start
  
 .equ GPIO_BASE, 0xFE200000
+.equ GPFSEL1, 0x04 /* GPIO Function Select 1 */
 .equ GPFSEL2, 0x08 /* GPIO Function Select 2 */
 
 .equ GPIO_24_OUTPUT, 0x1000
@@ -28,7 +29,7 @@ _start:
 3: /* Set GPIOs as Output*/
     ldr x0, = GPIO_BASE		/* set GPIO Base */
     mov w1, GPIO_24_OUTPUT	/* GPIO Output 24 */
-    str w1,[x0, GPFSEL2]        /* FSEL2(SELECT) (set the GPIO to output) */
+    str w1,[x0, GPFSEL1]        /* FSEL2(SELECT) (set the GPIO to output) */
 
     ldr x0, = GPIO_BASE		/* set GPIO Base */
     mov w2, GPIO_20_OUTPUT	/* GPIO Output 20 */
