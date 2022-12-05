@@ -1,5 +1,7 @@
 .global	_start
  
+/* Substitute a value to a label */
+
 .equ GPIO_BASE, 0xFE200000
 .equ GPFSEL1, 0x04 /* GPIO Function Select 1 */
 .equ GPFSEL2, 0x08 /* GPIO Function Select 2 */
@@ -26,7 +28,6 @@
 .equ GPIOVAL_25, 0x2000000 /* Set bit 25 for GPIO25 */
 .equ GPIOVAL_26, 0x4000000 /* Set bit 26 for GPIO26 */
 .equ GPIOVAL_27, 0x8000000 /* Set bit 27 for GPIO27 */
-
 
 _start:
     mrs x1, mpidr_el1        /* move register system (MPIDR_EL1, Multiprocessor Affinity Register, EL1) to x1 */
@@ -63,6 +64,8 @@ main:
     bl wait_long
     b main
 
+/* Define Brakes */
+
 wait_short:
 .initTimer:                  /* Start of Timer */
 
@@ -92,6 +95,16 @@ wait_short:
 
     ret                     /* Timer condition is met, go back*/
 
+wait_long:
+stp x29, x30, [sp, -32]! 
+mov x29, sp 
+	bl wait_short
+	bl wait_short
+ldp x29, x30, [sp], 32 
+ret
+
+/* Turn LED ON or OFF */
+
 led_on:
     ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
     ldr w1, = GPIOVAL_10 ;//# value to write to set register
@@ -103,6 +116,8 @@ led_off:
     ldr w1, = GPIOVAL_10 ;//# value to write to set register
     str w1, [x0, #GPFCLR0] ;//# store in set register
 ret
+
+/* Turn on each Segment */
 
 seg_A_on:
     ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
@@ -148,6 +163,8 @@ seg_DP_on:
     ldr w2, = GPIOVAL_27 ;//# value to write to set register
     str w2, [x0, #GPFSET0] ;//# store in set register
 ret
+
+/* Turn off each Segment */
 
 seg_A_off:
     ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
@@ -197,13 +214,7 @@ seg_DP_off:
     str w2, [x0, #GPFSET0] ;//# store in set register
 ret
 
-wait_long:
-stp x29, x30, [sp, -32]! 
-mov x29, sp 
-	bl wait_short
-	bl wait_short
-ldp x29, x30, [sp], 32 
-ret
+/* Define LED BLink Cycles short and long */
 
 led_cycle_short:
 stp x29, x30, [sp, -32]! 
