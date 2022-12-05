@@ -249,17 +249,6 @@ let_s_on:
     ldp x29, x30, [sp], 32
     ret
 
-let_s_off:
-    stp x29, x30, [sp, -32]! 
-	mov x29, sp
-    bl seg_A_off
-    bl seg_F_off
-    bl seg_G_off
-    bl seg_C_off
-    bl seg_D_off
-    ldp x29, x30, [sp], 32
-    ret
-
 let_o_on:
     stp x29, x30, [sp, -32]! 
 	mov x29, sp
@@ -272,7 +261,7 @@ let_o_on:
     ldp x29, x30, [sp], 32
     ret
 
-let_o_off:
+seg_all_off:
     stp x29, x30, [sp, -32]! 
 	mov x29, sp
     bl seg_A_off
@@ -281,6 +270,8 @@ let_o_off:
     bl seg_D_off
     bl seg_E_off
     bl seg_F_off
+	bl seg_G_off
+    bl seg_DP_off
     ldp x29, x30, [sp], 32
     ret
 
@@ -433,7 +424,7 @@ o:
 	bl led_cycle_long
 	bl led_cycle_long
 	bl led_cycle_long
-    bl let_o_off
+    bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -477,7 +468,7 @@ s:
 	bl led_cycle_short
 	bl led_cycle_short
 	bl led_cycle_short
-    bl let_s_off
+    bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
