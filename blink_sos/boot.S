@@ -7,12 +7,12 @@
 .equ GPIO_10_OUTPUT, 0x1
 .equ GPIO_20_OUTPUT, 0x1
 .equ GPIO_21_OUTPUT, 0x8
-.equ GPIO_22_OUTPUT, 0x10
-.equ GPIO_23_OUTPUT, 0x40
-.equ GPIO_24_OUTPUT, 0x200
-.equ GPIO_25_OUTPUT, 0x1000
-.equ GPIO_26_OUTPUT, 0x8000
-.equ GPIO_27_OUTPUT, 0x40000
+.equ GPIO_22_OUTPUT, 0x40
+.equ GPIO_23_OUTPUT, 0x200
+.equ GPIO_24_OUTPUT, 0x1000
+.equ GPIO_25_OUTPUT, 0x8000
+.equ GPIO_26_OUTPUT, 0x40000
+.equ GPIO_27_OUTPUT, 0x200000
 
 .equ GPFSET0, 0x1c //# Power 1 (LED power on)
 .equ GPFCLR0, 0x28 //# Power 0 (LED power off)
@@ -172,6 +172,7 @@ seg_D_off:
     ldr w2, = GPIOVAL_23 ;//# value to write to set register
     str w2, [x0, #GPFCLR0] ;//# store in set register
 ret
+
 seg_E_off:
     ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
     ldr w2, = GPIOVAL_24 ;//# value to write to set register
@@ -183,16 +184,19 @@ seg_F_off:
     ldr w2, = GPIOVAL_25 ;//# value to write to set register
     str w2, [x0, #GPFCLR0] ;//# store in set register
 ret
+
 seg_G_off:
     ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
     ldr w2, = GPIOVAL_26 ;//# value to write to set register
     str w2, [x0, #GPFCLR0] ;//# store in set register
 ret
+
 seg_DP_off:
     ldr x0, = GPIO_BASE       /* Basis adresse in x0 speichern */
     ldr w2, = GPIOVAL_27 ;//# value to write to set register
     str w2, [x0, #GPFSET0] ;//# store in set register
 ret
+
 wait_long:
 stp x29, x30, [sp, -32]! 
 mov x29, sp 
