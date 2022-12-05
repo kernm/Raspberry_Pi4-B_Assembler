@@ -58,9 +58,32 @@ _start:
     str w2,[x0, GPFSEL2]        /* FSEL2(SELECT) (set the GPIO to output) */
 
 main:
-    bl s
+    bl a
+    bl b
+    bl c
+	bl d
+    bl e
+    bl f
+	bl g
+    bl h
+    bl i
+	bl j
+    bl k
+    bl l
+	bl m
+    bl n
     bl o
-    bl s
+	bl p
+    bl q
+    bl r
+	bl s
+    bl t
+    bl u
+	bl v
+    bl w
+    bl x
+	bl y
+    bl z
     bl wait_long
     b main
 
@@ -238,14 +261,145 @@ ret
 
 /* 7-Segment Display Letters */
 
-let_s_on:
+let_a_on:
     stp x29, x30, [sp, -32]! 
 	mov x29, sp
     bl seg_A_on
-    bl seg_F_on
-    bl seg_G_on
-    bl seg_C_on
+    bl seg_B_on
     bl seg_D_on
+    bl seg_E_on
+    bl seg_F_on
+	bl seg_G_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_b_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl seg_C_on
+    bl seg_D_on
+    bl seg_E_on
+    bl seg_F_on
+	bl seg_G_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_c_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_A_on
+    bl seg_D_on
+    bl seg_E_on
+    bl seg_F_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_d_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_B_on
+	bl seg_C_on
+    bl seg_D_on
+    bl seg_E_on
+	bl seg_G_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_e_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_A_on
+    bl seg_D_on
+    bl seg_E_on
+    bl seg_F_on
+	bl seg_G_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_f_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_A_on
+    bl seg_E_on
+    bl seg_F_on
+	bl seg_G_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_g_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_A_on
+	bl seg_C_on
+    bl seg_D_on
+    bl seg_E_on
+    bl seg_F_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_h_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl seg_C_on
+    bl seg_E_on
+    bl seg_F_on
+	bl seg_G_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_i_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_E_on
+    bl seg_F_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_j_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_B_on
+	bl seg_C_on
+    bl seg_D_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_k_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_A_on
+	bl seg_C_on
+    bl seg_E_on
+    bl seg_F_on
+	bl seg_G_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_l_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_D_on
+    bl seg_E_on
+    bl seg_F_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_m_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_A_on
+	bl seg_C_on
+    bl seg_E_on
+	bl seg_G_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_n_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+	bl seg_C_on
+    bl seg_E_on
+	bl seg_G_on
     ldp x29, x30, [sp], 32
     ret
 
@@ -258,6 +412,120 @@ let_o_on:
     bl seg_D_on
     bl seg_E_on
     bl seg_F_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_p_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_A_on
+    bl seg_B_on
+    bl seg_E_on
+    bl seg_F_on
+	bl seg_G_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_q_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_A_on
+    bl seg_B_on
+	bl seg_C_on
+    bl seg_F_on
+	bl seg_G_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_r_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_E_on
+	bl seg_G_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_s_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_A_on
+    bl seg_F_on
+    bl seg_G_on
+    bl seg_C_on
+    bl seg_D_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_t_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_D_on
+    bl seg_E_on
+    bl seg_F_on
+	bl seg_G_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_u_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_B_on
+    bl seg_C_on
+    bl seg_D_on
+    bl seg_E_on
+    bl seg_F_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_v_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_B_on
+    bl seg_D_on
+    bl seg_F_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_w_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_B_on
+    bl seg_D_on
+    bl seg_F_on
+    bl seg_G_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_x_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_B_on
+    bl seg_C_on
+    bl seg_E_on
+    bl seg_F_on
+    bl seg_G_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_y_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_B_on
+    bl seg_C_on
+    bl seg_D_on
+    bl seg_F_on
+    bl seg_G_on
+    ldp x29, x30, [sp], 32
+    ret
+
+let_z_on:
+    stp x29, x30, [sp, -32]! 
+	mov x29, sp
+    bl seg_A_on
+    bl seg_B_on
+    bl seg_D_on
+    bl seg_E_on
+    bl seg_G_on
     ldp x29, x30, [sp], 32
     ret
 
@@ -280,8 +548,10 @@ seg_all_off:
 a: 
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+	bl let_a_on
 	bl led_cycle_short
 	bl led_cycle_long
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -289,10 +559,12 @@ a:
 b:
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+	bl let_b_on
 	bl led_cycle_long
 	bl led_cycle_short
 	bl led_cycle_short
 	bl led_cycle_short
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -300,10 +572,12 @@ b:
 c:
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+	bl let_c_on
 	bl led_cycle_long
 	bl led_cycle_short
 	bl led_cycle_long
 	bl led_cycle_short
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -311,9 +585,11 @@ c:
 d:
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp 
+	bl let_d_on
 	bl led_cycle_long
 	bl led_cycle_short
 	bl led_cycle_short
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -321,7 +597,9 @@ d:
 e:
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+	bl let_e_on
 	bl led_cycle_short
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -329,10 +607,12 @@ e:
 f: 
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+	bl let_f_on
 	bl led_cycle_short
 	bl led_cycle_short
 	bl led_cycle_long
 	bl led_cycle_short
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -340,9 +620,11 @@ f:
 g:
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+	bl let_g_on
 	bl led_cycle_long
 	bl led_cycle_long
 	bl led_cycle_short
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -350,10 +632,12 @@ g:
 h:
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+	bl let_h_on
 	bl led_cycle_short
 	bl led_cycle_short
 	bl led_cycle_short
 	bl led_cycle_short 
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -361,8 +645,10 @@ h:
 i:
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+	bl let_i_on
 	bl led_cycle_short
 	bl led_cycle_short
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -370,10 +656,12 @@ i:
 j:
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+	bl let_j_on
 	bl led_cycle_short
 	bl led_cycle_long
 	bl led_cycle_long
 	bl led_cycle_long
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -381,9 +669,11 @@ j:
 k:
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+	bl let_k_on
 	bl led_cycle_long
 	bl led_cycle_short
 	bl led_cycle_long
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -391,10 +681,12 @@ k:
 l:
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+	bl let_l_on
 	bl led_cycle_short
 	bl led_cycle_long
 	bl led_cycle_short
 	bl led_cycle_short
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -402,8 +694,10 @@ l:
 m:
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+	bl let_m_on
 	bl led_cycle_long
 	bl led_cycle_long
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -411,8 +705,10 @@ m:
 n:
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+	bl let_n_on
 	bl led_cycle_long
 	bl led_cycle_short
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -432,10 +728,12 @@ o:
 p: 
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+	bl let_p_on
 	bl led_cycle_short
 	bl led_cycle_long
 	bl led_cycle_long
 	bl led_cycle_short
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -443,10 +741,12 @@ p:
 q:
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+	bl let_q_on
 	bl led_cycle_long
 	bl led_cycle_long
 	bl led_cycle_short
 	bl led_cycle_long
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -454,9 +754,11 @@ q:
 r: 
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+	bl let_r_on
 	bl led_cycle_short
 	bl led_cycle_long
 	bl led_cycle_short
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -476,7 +778,9 @@ s:
 t:
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+	bl let_t_on
 	bl led_cycle_long
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -484,9 +788,11 @@ t:
 u: 
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+	bl let_u_on
 	bl led_cycle_short
 	bl led_cycle_short
 	bl led_cycle_long
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -494,10 +800,12 @@ u:
 v: 
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+	bl let_v_on
 	bl led_cycle_short
 	bl led_cycle_short
 	bl led_cycle_short
 	bl led_cycle_long
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -505,9 +813,11 @@ v:
 w:
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+	bl let_w_on
 	bl led_cycle_short
 	bl led_cycle_long
 	bl led_cycle_long
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -515,10 +825,12 @@ w:
 x:
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+	bl let_x_on
 	bl led_cycle_long
 	bl led_cycle_short
 	bl led_cycle_short
 	bl led_cycle_long
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -526,10 +838,12 @@ x:
 y:
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+	bl let_y_on
 	bl led_cycle_long
 	bl led_cycle_short
 	bl led_cycle_long
 	bl led_cycle_long
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
@@ -537,10 +851,12 @@ y:
 z:
 	stp x29, x30, [sp, -32]! 
 	mov x29, sp
+	bl let_z_on
 	bl led_cycle_long
 	bl led_cycle_long
 	bl led_cycle_short
 	bl led_cycle_short
+	bl seg_all_off
     bl wait_short
 	ldp x29, x30, [sp], 32
 	ret
