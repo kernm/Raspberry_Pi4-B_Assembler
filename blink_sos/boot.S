@@ -266,7 +266,7 @@ let_a_on:
 	mov x29, sp
     bl seg_A_on
     bl seg_B_on
-    bl seg_D_on
+    bl seg_C_on
     bl seg_E_on
     bl seg_F_on
 	bl seg_G_on
