@@ -58,32 +58,16 @@ _start:
     str w2,[x0, GPFSEL2]        /* FSEL2(SELECT) (set the GPIO to output) */
 
 main:
-    bl a
-    bl b
-    bl c
-	bl d
+    bl m
     bl e
-    bl f
-	bl g
-    bl h
-    bl i
-	bl j
-    bl k
-    bl l
-	bl m
-    bl n
-    bl o
-	bl p
-    bl q
     bl r
-	bl s
-    bl t
-    bl u
-	bl v
-    bl w
+    bl r
+    bl y
+    bl wait_long
     bl x
-	bl y
-    bl z
+    bl m
+    bl a
+    bl s
     bl wait_long
     b main
 
@@ -112,7 +96,7 @@ wait_short:
     msr CNTP_CTL_EL0, x1    /* Enable the counter and interrupt generation*/
 .readTimer:                  /* See if the timer condition is met */
     mrs x5, CNTP_CTL_EL0    /* Read the Status of the Timer */
-    and x5, x5, 0b100         /* See if x5 equals 0b1 (timer condition is met) */
+    and x5, x5, 0b100         /* See if x5 equals 0b100 (timer condition is met) */
     cbz x5, .readTimer      /* If x3 is 0 (Timer condition is not met) go to .readTimer */
     ldp x29, x30, [sp], 32    /* restore context... */
 
