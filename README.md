@@ -38,11 +38,27 @@ aarch64-linux-gnu-objcopy -O binary kernel.elf kernel8.img
 10. Insert the microSD into the RPi4 and give it some power
 11. cross your fingers and hope it doesn't explode
 
-## GPIO Pin
-In this example I use GPIO-Pin: 24 (PIN 18)
+## GPIO Pins
+In this example I use the following GPIO-Pins: 
+
+| GPIO Pin (output)  | LED / 7-Segment Display |
+| :---: | ------------- |
+| 10  | LED (green)  |
+| 20  | Segment - A  |
+| 21  | Segment - B  |
+| 22  | Segment - C  |
+| 23  | Segment - D  |
+| 24  | Segment - E  |
+| 25  | Segment - F  |
+| 26  | Segment - G  |
+| 27  | Segment - DP |
 
 ## GPIO Pinout Raspberry Pi 4 Model B
-![alt text](./media/rpi4b_gpio_pinout.jpg "Image of the GPIO pinout")
+<img src="./media/rpi4b_gpio_pinout.jpg" alt="Image of the GPIO pinout" width="50%">
 
 ## Example Setup
-![alt text](./media/setup_with_LED.jpg "Image of an example Setup")
+<img src="./media/Steckbrett_Aufbau_croped.jpg" alt="Image of an example Setup" width="50%">
+
+## Code Structure
+<img src="./media/Code_Structure_v1.0_dark.jpg" alt="Image of of the Code structure" width="100%">
+
