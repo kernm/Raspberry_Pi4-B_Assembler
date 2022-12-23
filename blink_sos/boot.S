@@ -208,7 +208,7 @@ ret
 seg_G_on:
     ldr x0, = GPIO_BASE
     ldr w2, = GPIOVAL_26
-    str w2, [x0, #GPFSET0]w1
+    str w2, [x0, #GPFSET0]
 ret
 seg_DP_on:
     ldr x0, = GPIO_BASE
