@@ -1,5 +1,6 @@
 # Raspberry Pi4 Model B - Assembly language
 Bare Metal coding with Assembly language on a Raspberry Pi 4 Model B
+<img src="./media/rpi_cover_low.jpg" alt="Cover Image from the Raspberry Pi" width="50%">
 
 ## Where the magic is happening
 Everything you need to know or change is in the "./blink_sos/boot.S" file.
@@ -60,5 +61,5 @@ In this example I use the following GPIO-Pins:
 <img src="./media/Steckbrett_Aufbau_croped.jpg" alt="Image of an example Setup" width="50%">
 
 ## Code Structure
-<img src="./media/Code_Structure_v1.0_dark.jpg" alt="Image of of the Code structure" width="100%">
+<img src="./media/Code_Structure_v1.0_dark.jpg" alt="Image of the Code structure" width="100%">
 
